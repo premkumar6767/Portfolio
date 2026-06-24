@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prem Kumar M — Information Solutions Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:   #080C12;
+      --black2:  #0D1320;
+      --black3:  #111927;
+      --black4:  #16213A;
+      --amber:   #FF9F1C;
+      --amber2:  #FFBE5C;
+      --teal:    #00E5CC;
+      --teal2:   #00B8A5;
+      --steel:   #DCE8F0;
+      --steel2:  #8FA8BC;
+      --red:     #FF4444;
+      --green:   #22FF88;
+      --blue:    #3B9EFF;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--black); color:var(--steel); font-family:'Inter',sans-serif; overflow-x:hidden; }
+    ::selection { background:var(--amber); color:var(--black); }
+    ::-webkit-scrollbar { width:3px; }
+    ::-webkit-scrollbar-track { background:var(--black2); }
+    ::-webkit-scrollbar-thumb { background:var(--amber); border-radius:2px; }
+
+    /* ─ NAV ──────────────────────────────── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:200;
+      padding:1.1rem 4rem;
+      display:flex; justify-content:space-between; align-items:center;
+      background:rgba(8,12,18,0.92);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(255,159,28,0.1);
+      transition:background .3s;
+    }
+    .nav-logo {
+      font-family:'IBM Plex Mono',monospace;
+      font-size:.9rem; font-weight:500; letter-spacing:2px;
+      color:var(--amber);
+    }
+    .nav-logo span { color:var(--steel2); }
+    .nav-links { display:flex; gap:2.5rem; list-style:none; }
+    .nav-links a {
+      text-decoration:none; color:var(--steel2);
+      font-family:'IBM Plex Mono',monospace; font-size:.72rem;
+      letter-spacing:1.5px; text-transform:uppercase;
+      transition:color .2s;
+    }
+    .nav-links a:hover { color:var(--amber); }
+    .nav-cta {
+      border:1px solid var(--amber) !important;
+      color:var(--amber) !important;
+      padding:.4rem 1rem; border-radius:3px;
+    }
+    .nav-cta:hover { background:var(--amber); color:var(--black) !important; }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+    .hamburger span { width:22px; height:2px; background:var(--steel); border-radius:2px; transition:all .3s; }
+
+    /* ─ HERO ─────────────────────────────── */
+    #hero {
+      min-height:100vh;
+      display:grid; grid-template-columns:1fr 1fr;
+      align-items:center; gap:4rem;
+      padding:6rem 4rem 4rem;
+      position:relative; overflow:hidden;
+    }
+    #hero::before {
+      content:'';
+      position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 60% 80% at 75% 50%, rgba(255,159,28,0.05) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(0,229,204,0.04) 0%, transparent 60%);
+      pointer-events:none;
+    }
+    .hero-text { position:relative; z-index:2; }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:.6rem;
+      background:rgba(255,159,28,0.08); border:1px solid rgba(255,159,28,0.2);
+      border-radius:3px; padding:.35rem .9rem;
+      font-family:'IBM Plex Mono',monospace; font-size:.68rem;
+      color:var(--amber); letter-spacing:2px; text-transform:uppercase;
+      margin-bottom:1.6rem;
+    }
+    .pulse-dot {
+      width:6px; height:6px; border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 8px var(--green);
+      animation:pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+    .hero-name {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:clamp(2.8rem,6vw,5.2rem);
+      font-weight:700; line-height:1.05;
+      letter-spacing:-2px;
+      margin-bottom:.6rem;
+    }
+    .hero-name .amber { color:var(--amber); }
+    .hero-role {
+      font-family:'IBM Plex Mono',monospace;
+      font-size:clamp(.9rem,1.8vw,1.1rem);
+      color:var(--teal); letter-spacing:.5px;
+      margin-bottom:1.6rem;
+    }
+    .hero-desc {
+      color:var(--steel2); font-size:.95rem; line-height:1.85;
+      max-width:480px; margin-bottom:2.2rem;
+    }
+    .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+    .btn-amber {
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:var(--amber); color:var(--black);
+      font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:.88rem;
+      padding:.8rem 1.8rem; border-radius:4px;
+      text-decoration:none; border:none; cursor:pointer;
+      transition:opacity .2s, transform .2s;
+    }
+    .btn-amber:hover { opacity:.88; transform:translateY(-2px); }
+    .btn-ghost {
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:transparent; color:var(--steel);
+      border:1px solid rgba(220,232,240,.18);
+      font-family:'Space Grotesk',sans-serif; font-weight:500; font-size:.88rem;
+      padding:.8rem 1.8rem; border-radius:4px;
+      text-decoration:none; cursor:pointer;
+      transition:border-color .2s, color .2s, transform .2s;
+    }
+    .btn-ghost:hover { border-color:var(--teal); color:var(--teal); transform:translateY(-2px); }
+    .hero-meta {
+      display:flex; gap:2.5rem; margin-top:3rem;
+      padding-top:2rem; border-top:1px solid rgba(255,159,28,.1);
+    }
+    .meta-item .val {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.6rem; font-weight:700; color:var(--amber);
+    }
+    .meta-item .lbl {
+      font-family:'IBM Plex Mono',monospace;
+      font-size:.64rem; color:var(--steel2); letter-spacing:1.5px;
+      text-transform:uppercase; margin-top:.15rem;
+    }
+
+    /* ─ SCADA WIDGET ─────────────────────── */
+    .scada-panel {
+      background:var(--black2);
+      border:1px solid rgba(255,159,28,.15);
+      border-radius:10px; padding:1.4rem;
+      position:relative; z-index:2;
+      font-family:'IBM Plex Mono',monospace;
+      box-shadow:0 0 80px rgba(255,159,28,.05), 0 30px 80px rgba(0,0,0,.5);
+    }
+    .scada-titlebar {
+      display:flex; justify-content:space-between; align-items:center;
+      padding-bottom:1rem; margin-bottom:1rem;
+      border-bottom:1px solid rgba(255,255,255,.05);
+    }
+    .scada-title { font-size:.68rem; letter-spacing:2px; color:var(--amber); text-transform:uppercase; }
+    .scada-dots { display:flex; gap:.4rem; }
+    .scada-dot { width:8px; height:8px; border-radius:50%; }
+    .sd-r { background:var(--red); }
+    .sd-y { background:var(--amber); }
+    .sd-g { background:var(--green); }
+    .scada-grid {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:.8rem; margin-bottom:1rem;
+    }
+    .scada-metric {
+      background:var(--black3);
+      border:1px solid rgba(255,255,255,.05);
+      border-radius:6px; padding:.9rem;
+    }
+    .sm-label { font-size:.58rem; letter-spacing:1.5px; color:var(--steel2); text-transform:uppercase; margin-bottom:.3rem; }
+    .sm-value {
+      font-size:1.5rem; font-weight:500;
+      transition:color .5s;
+    }
+    .sm-value.amber { color:var(--amber); }
+    .sm-value.teal  { color:var(--teal); }
+    .sm-value.green { color:var(--green); }
+    .sm-value.blue  { color:var(--blue); }
+    .sm-unit { font-size:.62rem; color:var(--steel2); margin-left:.3rem; }
+    .sm-bar { height:3px; border-radius:2px; margin-top:.5rem; background:rgba(255,255,255,.05); overflow:hidden; }
+    .sm-bar-fill { height:100%; border-radius:2px; transition:width 1s ease; }
+    /* Sparkline */
+    .scada-chart { margin-bottom:1rem; }
+    .chart-label { font-size:.58rem; letter-spacing:1.5px; color:var(--steel2); text-transform:uppercase; margin-bottom:.4rem; }
+    .sparkline-wrap {
+      background:var(--black3); border:1px solid rgba(255,255,255,.05);
+      border-radius:6px; padding:.8rem; height:70px; position:relative; overflow:hidden;
+    }
+    #sparkline { width:100%; height:100%; }
+    /* Status list */
+    .scada-status { display:flex; flex-direction:column; gap:.5rem; }
+    .status-row {
+      display:flex; align-items:center; justify-content:space-between;
+      background:var(--black3); border:1px solid rgba(255,255,255,.05);
+      border-radius:5px; padding:.55rem .8rem; font-size:.65rem;
+    }
+    .status-name { color:var(--steel2); letter-spacing:.5px; }
+    .status-pill {
+      font-size:.58rem; letter-spacing:1px; padding:.18rem .55rem;
+      border-radius:20px; text-transform:uppercase; font-weight:500;
+    }
+    .sp-online  { background:rgba(34,255,136,.1); color:var(--green); border:1px solid rgba(34,255,136,.25); }
+    .sp-active  { background:rgba(59,158,255,.1); color:var(--blue); border:1px solid rgba(59,158,255,.25); }
+    .sp-syncing { background:rgba(255,159,28,.1); color:var(--amber); border:1px solid rgba(255,159,28,.25); }
+    .scada-footer {
+      margin-top:.8rem; padding-top:.8rem;
+      border-top:1px solid rgba(255,255,255,.04);
+      display:flex; justify-content:space-between;
+      font-size:.58rem; color:var(--steel2); letter-spacing:1px;
+    }
+    #live-clock { color:var(--teal); }
+
+    /* ─ SECTIONS ─────────────────────────── */
+    section { padding:6rem 4rem; }
+    .eyebrow {
+      font-family:'IBM Plex Mono',monospace;
+      font-size:.68rem; letter-spacing:3px; text-transform:uppercase;
+      color:var(--amber); margin-bottom:.8rem;
+      display:flex; align-items:center; gap:.8rem;
+    }
+    .eyebrow::after { content:''; width:32px; height:1px; background:var(--amber); opacity:.5; }
+    .sec-title {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:clamp(1.8rem,3.5vw,2.8rem);
+      font-weight:700; letter-spacing:-1px;
+      line-height:1.1; margin-bottom:1rem;
+    }
+    .sec-sub { color:var(--steel2); font-size:.95rem; line-height:1.8; max-width:540px; }
+
+    /* ─ ABOUT ────────────────────────────── */
+    #about { background:var(--black2); }
+    .about-layout {
+      display:grid; grid-template-columns:3fr 2fr;
+      gap:5rem; align-items:start; margin-top:3.5rem;
+    }
+    .about-text p { color:var(--steel2); line-height:1.85; margin-bottom:1.2rem; font-size:.95rem; }
+    .about-tags { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.5rem; }
+    .a-tag {
+      font-family:'IBM Plex Mono',monospace; font-size:.68rem;
+      padding:.32rem .8rem; border-radius:3px;
+      background:rgba(255,159,28,.07); border:1px solid rgba(255,159,28,.2);
+      color:var(--amber2); letter-spacing:.5px;
+    }
+    .about-card {
+      background:var(--black3);
+      border:1px solid rgba(255,159,28,.12);
+      border-radius:10px; padding:1.8rem;
+      display:flex; flex-direction:column; gap:1.2rem;
+    }
+    .ac-row {
+      display:flex; align-items:flex-start; gap:.9rem;
+      padding-bottom:1.2rem;
+      border-bottom:1px solid rgba(255,255,255,.04);
+    }
+    .ac-row:last-child { border-bottom:none; padding-bottom:0; }
+    .ac-icon {
+      font-size:1.2rem; width:36px; height:36px;
+      border-radius:7px; background:rgba(255,159,28,.08);
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0;
+    }
+    .ac-label {
+      font-family:'IBM Plex Mono',monospace;
+      font-size:.65rem; color:var(--amber); letter-spacing:1px;
+      text-transform:uppercase; margin-bottom:.25rem;
+    }
+    .ac-val { font-size:.88rem; color:var(--steel); line-height:1.5; }
+
+    /* ─ SKILLS ───────────────────────────── */
+    #skills { background:var(--black); }
+    .skills-layout {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+      gap:1.2rem; margin-top:3.5rem;
+    }
+    .skill-card {
+      background:var(--black2);
+      border:1px solid rgba(255,255,255,.05);
+      border-radius:8px; padding:1.6rem;
+      transition:border-color .3s, transform .3s;
+      position:relative; overflow:hidden;
+    }
+    .skill-card::after {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg, var(--amber), var(--teal));
+      transform:scaleX(0); transform-origin:left; transition:transform .3s;
+    }
+    .skill-card:hover { border-color:rgba(255,159,28,.25); transform:translateY(-3px); }
+    .skill-card:hover::after { transform:scaleX(1); }
+    .sc-icon { font-size:1.6rem; margin-bottom:.9rem; }
+    .sc-title {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1rem; font-weight:600; margin-bottom:.8rem;
+    }
+    .chip-wrap { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .chip {
+      font-family:'IBM Plex Mono',monospace; font-size:.64rem;
+      padding:.25rem .65rem; border-radius:3px; letter-spacing:.3px;
+    }
+    .c-amber { background:rgba(255,159,28,.1); border:1px solid rgba(255,159,28,.22); color:var(--amber2); }
+    .c-teal  { background:rgba(0,229,204,.08); border:1px solid rgba(0,229,204,.2);  color:var(--teal); }
+    .c-blue  { background:rgba(59,158,255,.08);border:1px solid rgba(59,158,255,.2); color:var(--blue); }
+    .c-steel { background:rgba(220,232,240,.05);border:1px solid rgba(220,232,240,.12);color:var(--steel2); }
+
+    /* ─ EXPERIENCE ───────────────────────── */
+    #experience { background:var(--black2); }
+    .exp-layout { display:grid; grid-template-columns:1fr 2fr; gap:4rem; margin-top:3.5rem; }
+    .exp-sidebar { position:sticky; top:6rem; align-self:start; }
+    .exp-company {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.5rem; font-weight:700; margin-bottom:.3rem;
+    }
+    .exp-company span { color:var(--amber); }
+    .exp-period {
+      font-family:'IBM Plex Mono',monospace; font-size:.7rem;
+      color:var(--teal); letter-spacing:1px; margin-bottom:1rem;
+    }
+    .exp-sidebar p { color:var(--steel2); font-size:.88rem; line-height:1.7; }
+    .exp-cards { display:flex; flex-direction:column; gap:1.2rem; }
+    .exp-card {
+      background:var(--black3);
+      border:1px solid rgba(255,255,255,.05);
+      border-left:3px solid var(--amber);
+      border-radius:0 8px 8px 0; padding:1.5rem 1.8rem;
+      transition:border-left-color .2s, transform .2s;
+    }
+    .exp-card:hover { border-left-color:var(--teal); transform:translateX(4px); }
+    .ec-title {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1rem; font-weight:600; margin-bottom:.5rem;
+    }
+    .ec-desc { color:var(--steel2); font-size:.88rem; line-height:1.75; }
+    .ec-tags { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.9rem; }
+
+    /* ─ PROJECTS ─────────────────────────── */
+    #projects { background:var(--black); }
+    .projects-grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:1.5rem; margin-top:3.5rem;
+    }
+    .proj-card {
+      background:var(--black2);
+      border:1px solid rgba(255,255,255,.05);
+      border-radius:10px; overflow:hidden;
+      display:flex; flex-direction:column;
+      transition:transform .3s, border-color .3s, box-shadow .3s;
+    }
+    .proj-card:hover {
+      transform:translateY(-5px);
+      border-color:rgba(255,159,28,.2);
+      box-shadow:0 24px 64px rgba(0,0,0,.5), 0 0 40px rgba(255,159,28,.04);
+    }
+    .proj-header {
+      padding:1.6rem 1.6rem .8rem;
+      display:flex; justify-content:space-between; align-items:flex-start;
+    }
+    .proj-icon {
+      width:44px; height:44px; border-radius:8px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.3rem;
+    }
+    .proj-link-btn {
+      width:30px; height:30px; border-radius:6px;
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+      color:var(--steel2); text-decoration:none; font-size:.85rem;
+      transition:all .2s;
+    }
+    .proj-link-btn:hover { background:var(--amber); color:var(--black); border-color:var(--amber); }
+    .proj-body { padding:.8rem 1.6rem 1.6rem; flex:1; }
+    .proj-title {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.05rem; font-weight:600; margin-bottom:.5rem;
+    }
+    .proj-desc { color:var(--steel2); font-size:.87rem; line-height:1.75; margin-bottom:1rem; }
+    .proj-stack { display:flex; flex-wrap:wrap; gap:.35rem; }
+    .ps-tag {
+      font-family:'IBM Plex Mono',monospace; font-size:.62rem;
+      padding:.22rem .55rem; border-radius:3px;
+      background:rgba(0,229,204,.07); color:var(--teal);
+      border:1px solid rgba(0,229,204,.15);
+    }
+    .proj-featured {
+      border-color:rgba(255,159,28,.18);
+      background:linear-gradient(135deg, var(--black2), rgba(255,159,28,.04));
+    }
+
+    /* ─ EDUCATION ────────────────────────── */
+    #education { background:var(--black2); }
+    .timeline { position:relative; margin-top:3.5rem; padding-left:1.5rem; }
+    .timeline::before {
+      content:''; position:absolute; left:0; top:0; bottom:0;
+      width:1px; background:linear-gradient(to bottom, var(--amber), rgba(255,159,28,.05));
+    }
+    .tl-item { position:relative; margin-bottom:2.5rem; padding-left:2rem; }
+    .tl-dot {
+      position:absolute; left:-1.5rem;
+      width:10px; height:10px; border-radius:50%;
+      background:var(--amber); border:2px solid var(--black2);
+      box-shadow:0 0 10px var(--amber); margin-top:.4rem;
+    }
+    .tl-date {
+      font-family:'IBM Plex Mono',monospace; font-size:.68rem;
+      color:var(--amber); letter-spacing:1px; margin-bottom:.3rem;
+    }
+    .tl-title {
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.05rem; font-weight:600; margin-bottom:.2rem;
+    }
+    .tl-sub { color:var(--teal); font-size:.85rem; margin-bottom:.5rem; font-family:'IBM Plex Mono',monospace; }
+    .tl-desc { color:var(--steel2); font-size:.87rem; line-height:1.75; }
+
+    /* ─ CONTACT ──────────────────────────── */
+    #contact { background:var(--black); }
+    .contact-layout {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:5rem; margin-top:3.5rem; align-items:start;
+    }
+    .contact-links { display:flex; flex-direction:column; gap:.9rem; margin-top:1.8rem; }
+    .c-link {
+      display:flex; align-items:center; gap:1rem;
+      text-decoration:none; color:var(--steel2);
+      background:var(--black2); border:1px solid rgba(255,255,255,.05);
+      border-radius:7px; padding:1rem 1.2rem;
+      transition:border-color .2s, color .2s;
+    }
+    .c-link:hover { border-color:rgba(255,159,28,.3); color:var(--amber); }
+    .c-link-icon {
+      width:38px; height:38px; border-radius:7px;
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(255,159,28,.08); font-size:1rem; flex-shrink:0;
+    }
+    .c-link-title { font-weight:500; color:var(--steel); font-size:.9rem; }
+    .c-link-val { font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:var(--steel2); margin-top:.1rem; }
+    .contact-form { display:flex; flex-direction:column; gap:.9rem; }
+    .f-row { display:grid; grid-template-columns:1fr 1fr; gap:.9rem; }
+    .f-group { display:flex; flex-direction:column; gap:.35rem; }
+    .f-label {
+      font-family:'IBM Plex Mono',monospace; font-size:.64rem;
+      letter-spacing:1.5px; text-transform:uppercase; color:var(--steel2);
+    }
+    .f-input, .f-textarea {
+      background:var(--black2); border:1px solid rgba(255,255,255,.08);
+      color:var(--steel); border-radius:6px; padding:.8rem 1rem;
+      font-family:'Inter',sans-serif; font-size:.88rem;
+      outline:none; transition:border-color .2s;
+    }
+    .f-input:focus, .f-textarea:focus {
+      border-color:var(--amber);
+      box-shadow:0 0 0 3px rgba(255,159,28,.06);
+    }
+    .f-textarea { resize:vertical; min-height:130px; }
+    .f-submit {
+      background:var(--amber); color:var(--black);
+      font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:.9rem;
+      border:none; border-radius:6px; padding:.9rem 2rem;
+      cursor:pointer; align-self:flex-start;
+      transition:opacity .2s, transform .2s;
+    }
+    .f-submit:hover { opacity:.88; transform:translateY(-2px); }
+
+    /* ─ FOOTER ───────────────────────────── */
+    footer {
+      background:var(--black2); border-top:1px solid rgba(255,159,28,.07);
+      padding:2.2rem 4rem;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .f-copy { font-family:'IBM Plex Mono',monospace; font-size:.68rem; color:var(--steel2); letter-spacing:1px; }
+    .f-socials { display:flex; gap:.8rem; }
+    .soc {
+      width:36px; height:36px; border-radius:6px;
+      display:flex; align-items:center; justify-content:center;
+      background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07);
+      color:var(--steel2); text-decoration:none; font-size:.82rem;
+      font-family:'IBM Plex Mono',monospace;
+      transition:all .2s;
+    }
+    .soc:hover { background:var(--amber); color:var(--black); border-color:var(--amber); }
+
+    /* ─ REVEAL ───────────────────────────── */
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .55s ease, transform .55s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+    .d1 { transition-delay:.1s; } .d2 { transition-delay:.2s; }
+    .d3 { transition-delay:.3s; } .d4 { transition-delay:.4s; }
+
+    /* ─ MOBILE ───────────────────────────── */
+    @media(max-width:960px) {
+      nav { padding:1rem 1.5rem; }
+      .hamburger { display:flex; }
+      .nav-links {
+        display:none; position:fixed; inset:0; top:60px;
+        background:var(--black); flex-direction:column;
+        align-items:center; justify-content:center; gap:2.5rem;
+      }
+      .nav-links.open { display:flex; }
+      #hero { grid-template-columns:1fr; padding:5rem 1.5rem 3rem; }
+      .scada-panel { display:none; }
+      section { padding:4rem 1.5rem; }
+      .about-layout { grid-template-columns:1fr; gap:2.5rem; }
+      .exp-layout { grid-template-columns:1fr; gap:2rem; }
+      .exp-sidebar { position:static; }
+      .contact-layout { grid-template-columns:1fr; gap:3rem; }
+      .f-row { grid-template-columns:1fr; }
+      footer { flex-direction:column; gap:1rem; text-align:center; }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      *,*::before,*::after { animation:none !important; transition-duration:.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">PK<span>_ISE</span></div>
+  <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+  <ul class="nav-links" id="navlinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-text">
+    <div class="hero-badge">
+      <div class="pulse-dot"></div>
+      Available · Information Solutions Engineer
+    </div>
+    <h1 class="hero-name">Prem<br><span class="amber">Kumar M.</span></h1>
+    <div class="hero-role">Graduate Engineer @ BW Design Group</div>
+    <p class="hero-desc">
+      I build industrial software at the intersection of SCADA/HMI systems and modern
+      engineering — developing Ignition Perspective applications, Docker architectures,
+      and real-time operational dashboards for manufacturing environments.
+    </p>
+    <div class="hero-btns">
+      <a href="#experience" class="btn-amber">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        View My Work
+      </a>
+      <a href="#contact" class="btn-ghost">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Get In Touch
+      </a>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <div class="val">Ignition</div>
+        <div class="lbl">Platform</div>
+      </div>
+      <div class="meta-item">
+        <div class="val">SCADA</div>
+        <div class="lbl">Specialty</div>
+      </div>
+      <div class="meta-item">
+        <div class="val">MSEC'26</div>
+        <div class="lbl">ECE Batch</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCADA PANEL — signature hero element -->
+  <div class="scada-panel">
+    <div class="scada-titlebar">
+      <div class="scada-title">⬡ IGNITION PERSPECTIVE — LIVE VIEW</div>
+      <div class="scada-dots">
+        <div class="scada-dot sd-r"></div>
+        <div class="scada-dot sd-y"></div>
+        <div class="scada-dot sd-g"></div>
+      </div>
+    </div>
+    <div class="scada-grid">
+      <div class="scada-metric">
+        <div class="sm-label">Line Efficiency</div>
+        <div class="sm-value amber" id="m1">94.7<span class="sm-unit">%</span></div>
+        <div class="sm-bar"><div class="sm-bar-fill" id="b1" style="width:94.7%;background:var(--amber)"></div></div>
+      </div>
+      <div class="scada-metric">
+        <div class="sm-label">Throughput</div>
+        <div class="sm-value teal" id="m2">1,248<span class="sm-unit">u/hr</span></div>
+        <div class="sm-bar"><div class="sm-bar-fill" id="b2" style="width:78%;background:var(--teal)"></div></div>
+      </div>
+      <div class="scada-metric">
+        <div class="sm-label">Active Tags</div>
+        <div class="sm-value green" id="m3">3,841</div>
+        <div class="sm-bar"><div class="sm-bar-fill" id="b3" style="width:88%;background:var(--green)"></div></div>
+      </div>
+      <div class="scada-metric">
+        <div class="sm-label">Response Time</div>
+        <div class="sm-value blue" id="m4">12<span class="sm-unit">ms</span></div>
+        <div class="sm-bar"><div class="sm-bar-fill" id="b4" style="width:62%;background:var(--blue)"></div></div>
+      </div>
+    </div>
+    <div class="scada-chart">
+      <div class="chart-label">Real-Time Data Stream</div>
+      <div class="sparkline-wrap">
+        <svg id="sparkline" viewBox="0 0 320 54" preserveAspectRatio="none"></svg>
+      </div>
+    </div>
+    <div class="scada-status">
+      <div class="status-row">
+        <span class="status-name">Ignition Gateway</span>
+        <span class="status-pill sp-online">Online</span>
+      </div>
+      <div class="status-row">
+        <span class="status-name">Docker Containers</span>
+        <span class="status-pill sp-active">4 / 4 Running</span>
+      </div>
+      <div class="status-row">
+        <span class="status-name">Git Sync</span>
+        <span class="status-pill sp-syncing">Pushing...</span>
+      </div>
+    </div>
+    <div class="scada-footer">
+      <span>BW Design Group · IS Team</span>
+      <span id="live-clock">--:--:--</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="eyebrow reveal">About</div>
+  <div class="about-layout">
+    <div class="about-text">
+      <h2 class="sec-title reveal d1">Where Industrial<br>Automation Meets<br>Modern Software</h2>
+      <p class="reveal d2">
+        I'm a Graduate Engineer on the Information Solutions team at BW Design Group,
+        working at the sharp edge of industrial digitalization. My day-to-day involves
+        building and enhancing SCADA/HMI applications on the Ignition platform —
+        translating complex industrial processes into real-time, intuitive operational interfaces.
+      </p>
+      <p class="reveal d3">
+        I thrive at the intersection of two worlds: the precision of industrial automation
+        and the velocity of modern software engineering. From writing Ignition Perspective
+        views to configuring Docker Compose architectures and managing codebases through Git,
+        I bring a full-stack mindset to industrial environments.
+      </p>
+      <div class="about-tags reveal d4">
+        <span class="a-tag">🏭 Industrial Automation</span>
+        <span class="a-tag">📊 SCADA / HMI</span>
+        <span class="a-tag">🔧 Ignition Platform</span>
+        <span class="a-tag">🐳 Docker</span>
+        <span class="a-tag">🎨 UI/UX · Figma</span>
+        <span class="a-tag">🗄️ SQL</span>
+      </div>
+    </div>
+    <div class="about-card reveal d2">
+      <div class="ac-row">
+        <div class="ac-icon">🏢</div>
+        <div>
+          <div class="ac-label">Company</div>
+          <div class="ac-val">BW Design Group<br><span style="color:var(--steel2);font-size:.82rem;">Information Solutions Team</span></div>
+        </div>
+      </div>
+      <div class="ac-row">
+        <div class="ac-icon">🎓</div>
+        <div>
+          <div class="ac-label">Education</div>
+          <div class="ac-val">B.E. Electronics & Communication<br><span style="color:var(--steel2);font-size:.82rem;">Meenakshi Sundararajan Engg. College · 2026</span></div>
+        </div>
+      </div>
+      <div class="ac-row">
+        <div class="ac-icon">📍</div>
+        <div>
+          <div class="ac-label">Location</div>
+          <div class="ac-val">Chennai, India<br><span style="color:var(--steel2);font-size:.82rem;">Open to remote & on-site</span></div>
+        </div>
+      </div>
+      <div class="ac-row">
+        <div class="ac-icon">⚡</div>
+        <div>
+          <div class="ac-label">Focus</div>
+          <div class="ac-val">Industrial Software & Digitalization<br><span style="color:var(--steel2);font-size:.82rem;">SCADA · HMI · Real-time Visualization</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="eyebrow reveal">Tech Stack</div>
+  <h2 class="sec-title reveal d1">Tools of the Trade</h2>
+  <p class="sec-sub reveal d2">A blend of industrial platforms and modern software engineering disciplines.</p>
+  <div class="skills-layout">
+    <div class="skill-card reveal">
+      <div class="sc-icon">⚙️</div>
+      <div class="sc-title">Industrial Platform</div>
+      <div class="chip-wrap">
+        <span class="chip c-amber">Ignition SCADA</span>
+        <span class="chip c-amber">Ignition Perspective</span>
+        <span class="chip c-amber">HMI Development</span>
+        <span class="chip c-amber">Tag Configuration</span>
+      </div>
+    </div>
+    <div class="skill-card reveal d1">
+      <div class="sc-icon">🐳</div>
+      <div class="sc-title">Infrastructure & DevOps</div>
+      <div class="chip-wrap">
+        <span class="chip c-teal">Docker</span>
+        <span class="chip c-teal">Docker Compose</span>
+        <span class="chip c-teal">Git</span>
+        <span class="chip c-teal">Version Control</span>
+      </div>
+    </div>
+    <div class="skill-card reveal d2">
+      <div class="sc-icon">💻</div>
+      <div class="sc-title">Languages</div>
+      <div class="chip-wrap">
+        <span class="chip c-blue">Python</span>
+        <span class="chip c-blue">SQL</span>
+        <span class="chip c-steel">JavaScript</span>
+        <span class="chip c-steel">HTML / CSS</span>
+      </div>
+    </div>
+    <div class="skill-card reveal d3">
+      <div class="sc-icon">🎨</div>
+      <div class="sc-title">UI/UX & Design</div>
+      <div class="chip-wrap">
+        <span class="chip c-amber">Figma</span>
+        <span class="chip c-amber">HMI / SCADA UI Design</span>
+        <span class="chip c-steel">Wireframing</span>
+        <span class="chip c-steel">Prototyping</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="sc-icon">🏭</div>
+      <div class="sc-title">Industrial Domain</div>
+      <div class="chip-wrap">
+        <span class="chip c-teal">Manufacturing Systems</span>
+        <span class="chip c-teal">Real-time Monitoring</span>
+        <span class="chip c-teal">OT/IT Convergence</span>
+        <span class="chip c-steel">Industrial IoT</span>
+      </div>
+    </div>
+    <div class="skill-card reveal d1">
+      <div class="sc-icon">🌐</div>
+      <div class="sc-title">Web Development</div>
+      <div class="chip-wrap">
+        <span class="chip c-steel">HTML5 · CSS3</span>
+        <span class="chip c-steel">JavaScript</span>
+        <span class="chip c-steel">jQuery</span>
+        <span class="chip c-blue">React (Learning)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="eyebrow reveal">Experience</div>
+  <div class="exp-layout">
+    <div class="exp-sidebar reveal">
+      <div class="exp-company">BW <span>Design</span><br>Group</div>
+      <div class="exp-period">2024 — Present · Graduate Engineer</div>
+      <p>
+        Contributing to industrial software and digitalization projects within the
+        Information Solutions team, delivering real-time SCADA/HMI systems for
+        manufacturing environments.
+      </p>
+    </div>
+    <div class="exp-cards">
+      <div class="exp-card reveal">
+        <div class="ec-title">SCADA/HMI Application Development</div>
+        <p class="ec-desc">
+          Developing and enhancing SCADA/HMI applications using the Ignition platform and
+          Ignition Perspective. Building operator-facing interfaces for real-time monitoring
+          and control of industrial processes, with a strong focus on usability, performance,
+          and data visualization.
+        </p>
+        <div class="ec-tags">
+          <span class="chip c-amber">Ignition Perspective</span>
+          <span class="chip c-amber">SCADA</span>
+          <span class="chip c-amber">HMI</span>
+          <span class="chip c-steel">Tag Historian</span>
+        </div>
+      </div>
+      <div class="exp-card reveal d1">
+        <div class="ec-title">Docker Architecture & Containerization</div>
+        <p class="ec-desc">
+          Creating Docker Compose configurations to define and manage project architectures —
+          containerizing Ignition gateways, databases, and supporting services for consistent,
+          reproducible deployment environments across development and production.
+        </p>
+        <div class="ec-tags">
+          <span class="chip c-teal">Docker</span>
+          <span class="chip c-teal">Docker Compose</span>
+          <span class="chip c-teal">Container Networking</span>
+          <span class="chip c-teal">Service Orchestration</span>
+        </div>
+      </div>
+      <div class="exp-card reveal d2">
+        <div class="ec-title">Collaborative Engineering with Git</div>
+        <p class="ec-desc">
+          Using Git for version control across team deliverables — managing branches, reviewing
+          changes, and maintaining clean project histories for industrial software under
+          active development by cross-functional engineering teams.
+        </p>
+        <div class="ec-tags">
+          <span class="chip c-blue">Git</span>
+          <span class="chip c-blue">Version Control</span>
+          <span class="chip c-blue">Collaboration</span>
+        </div>
+      </div>
+      <div class="exp-card reveal d3">
+        <div class="ec-title">UI/UX Design & Figma Prototyping</div>
+        <p class="ec-desc">
+          Gaining exposure to UI/UX design principles using Figma — creating wireframes and
+          prototypes for industrial dashboards and operator screens, ensuring interfaces are
+          intuitive, accessible, and aligned with operator workflows on the shop floor.
+        </p>
+        <div class="ec-tags">
+          <span class="chip c-amber">Figma</span>
+          <span class="chip c-amber">UI/UX Design</span>
+          <span class="chip c-amber">Prototyping</span>
+          <span class="chip c-steel">Industrial UX</span>
+        </div>
+      </div>
+      <div class="exp-card reveal d4">
+        <div class="ec-title">Data & Backend Exposure</div>
+        <p class="ec-desc">
+          Working with Python scripting and SQL within the Ignition ecosystem — writing
+          queries for historian data retrieval, automating reporting workflows, and building
+          data-driven components within SCADA/HMI projects.
+        </p>
+        <div class="ec-tags">
+          <span class="chip c-blue">Python</span>
+          <span class="chip c-blue">SQL</span>
+          <span class="chip c-steel">Scripting</span>
+          <span class="chip c-steel">Historian Data</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="eyebrow reveal">Portfolio</div>
+  <h2 class="sec-title reveal d1">Things I've Built</h2>
+  <p class="sec-sub reveal d2">Projects spanning industrial platforms, the open web, and everything between.</p>
+  <div class="projects-grid">
+    <div class="proj-card proj-featured reveal">
+      <div class="proj-header">
+        <div class="proj-icon" style="background:rgba(255,159,28,.12);">📊</div>
+        <a href="#" class="proj-link-btn">↗</a>
+      </div>
+      <div class="proj-body">
+        <div class="proj-title">Industrial SCADA Dashboard — BW Design Group</div>
+        <p class="proj-desc">
+          Real-time HMI/SCADA application built with Ignition Perspective for manufacturing
+          environments. Features live tag data, trend charts, alarm management panels,
+          and operator-level navigation — containerized with Docker for deployment.
+        </p>
+        <div class="proj-stack">
+          <span class="ps-tag">Ignition</span>
+          <span class="ps-tag">Perspective</span>
+          <span class="ps-tag">Docker</span>
+          <span class="ps-tag">Python</span>
+          <span class="ps-tag">SQL</span>
+        </div>
+      </div>
+    </div>
+    <div class="proj-card reveal d1">
+      <div class="proj-header">
+        <div class="proj-icon" style="background:rgba(0,229,204,.1);">🌐</div>
+        <a href="https://premkumarm-portfolio.netlify.app" target="_blank" class="proj-link-btn">↗</a>
+      </div>
+      <div class="proj-body">
+        <div class="proj-title">Personal Portfolio Website</div>
+        <p class="proj-desc">
+          Designed and developed from scratch — a fully responsive portfolio website
+          showcasing professional work and skills. Hosted on Netlify with custom domain.
+        </p>
+        <div class="proj-stack">
+          <span class="ps-tag">HTML5</span>
+          <span class="ps-tag">CSS3</span>
+          <span class="ps-tag">JavaScript</span>
+          <span class="ps-tag">Netlify</span>
+        </div>
+      </div>
+    </div>
+    <div class="proj-card reveal d2">
+      <div class="proj-header">
+        <div class="proj-icon" style="background:rgba(59,158,255,.1);">🐳</div>
+        <a href="https://github.com/premkumar6767" target="_blank" class="proj-link-btn">↗</a>
+      </div>
+      <div class="proj-body">
+        <div class="proj-title">Docker Compose Project Architectures</div>
+        <p class="proj-desc">
+          Multi-service Docker Compose configurations for industrial software stacks —
+          defining Ignition gateway containers, database services, and reverse proxy
+          configurations for reproducible project environments.
+        </p>
+        <div class="proj-stack">
+          <span class="ps-tag">Docker</span>
+          <span class="ps-tag">Docker Compose</span>
+          <span class="ps-tag">YAML</span>
+          <span class="ps-tag">Networking</span>
+        </div>
+      </div>
+    </div>
+    <div class="proj-card reveal d3">
+      <div class="proj-header">
+        <div class="proj-icon" style="background:rgba(255,159,28,.1);">🤖</div>
+        <a href="https://github.com/premkumar6767/CODSOFT" target="_blank" class="proj-link-btn">↗</a>
+      </div>
+      <div class="proj-body">
+        <div class="proj-title">CodSoft Internship — Web Projects</div>
+        <p class="proj-desc">
+          A collection of web projects built during the CodSoft internship: an interactive
+          chatbot UI, a to-do list application, and a fully styled calculator — all built
+          with vanilla JS.
+        </p>
+        <div class="proj-stack">
+          <span class="ps-tag">HTML</span>
+          <span class="ps-tag">CSS</span>
+          <span class="ps-tag">JavaScript</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="eyebrow reveal">Education</div>
+  <h2 class="sec-title reveal d1">Academic Journey</h2>
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-date">2022 — 2026</div>
+      <div class="tl-title">B.E. Electronics & Communication Engineering</div>
+      <div class="tl-sub">Meenakshi Sundararajan Engineering College, Chennai</div>
+      <p class="tl-desc">
+        Pursuing a comprehensive ECE curriculum covering signal processing, communication
+        systems, VLSI design, and embedded architecture — while simultaneously applying
+        software engineering skills in real industrial environments through my role at BW
+        Design Group.
+      </p>
+    </div>
+    <div class="tl-item reveal d1">
+      <div class="tl-dot" style="background:var(--teal);box-shadow:0 0 10px var(--teal);"></div>
+      <div class="tl-date">2024 — Present</div>
+      <div class="tl-title">Graduate Engineer — Information Solutions</div>
+      <div class="tl-sub">BW Design Group</div>
+      <p class="tl-desc">
+        Working on the Information Solutions team contributing to SCADA/HMI development,
+        Docker-based project architectures, Git-managed workflows, and UI/UX design for
+        industrial monitoring and visualization systems.
+      </p>
+    </div>
+    <div class="tl-item reveal d2">
+      <div class="tl-dot" style="background:var(--blue);box-shadow:0 0 10px var(--blue);"></div>
+      <div class="tl-date">2024</div>
+      <div class="tl-title">Web Development Internship</div>
+      <div class="tl-sub">CodSoft · Remote</div>
+      <p class="tl-desc">
+        Built web projects including a chatbot interface, task management app, and
+        calculator using HTML, CSS, and JavaScript — developing a foundation in frontend
+        development.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="eyebrow reveal">Contact</div>
+  <h2 class="sec-title reveal d1">Let's Connect</h2>
+  <div class="contact-layout">
+    <div class="reveal d2">
+      <p class="sec-sub">
+        Whether you have an opportunity in industrial software, a SCADA/HMI project,
+        or simply want to exchange ideas on the future of industrial digitalization —
+        I'm open to conversations.
+      </p>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/prem-kumar-m-167b722a1" target="_blank" class="c-link">
+          <div class="c-link-icon">💼</div>
+          <div>
+            <div class="c-link-title">LinkedIn</div>
+            <div class="c-link-val">prem-kumar-m-167b722a1</div>
+          </div>
+        </a>
+        <a href="https://github.com/premkumar6767" target="_blank" class="c-link">
+          <div class="c-link-icon">⌥</div>
+          <div>
+            <div class="c-link-title">GitHub</div>
+            <div class="c-link-val">premkumar6767</div>
+          </div>
+        </a>
+        <a href="https://wa.me/+917448631031" target="_blank" class="c-link">
+          <div class="c-link-icon">📱</div>
+          <div>
+            <div class="c-link-title">WhatsApp</div>
+            <div class="c-link-val">+91 74486 31031</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="contact-form reveal d3">
+      <div class="f-row">
+        <div class="f-group">
+          <label class="f-label">Name</label>
+          <input class="f-input" type="text" placeholder="Your name" />
+        </div>
+        <div class="f-group">
+          <label class="f-label">Email</label>
+          <input class="f-input" type="email" placeholder="you@company.com" />
+        </div>
+      </div>
+      <div class="f-group">
+        <label class="f-label">Subject</label>
+        <input class="f-input" type="text" placeholder="Opportunity / Collaboration / Just saying hi" />
+      </div>
+      <div class="f-group">
+        <label class="f-label">Message</label>
+        <textarea class="f-textarea" placeholder="Tell me about what you're building..."></textarea>
+      </div>
+      <button class="f-submit" onclick="handleSend(this)">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-copy">© 2024 Prem Kumar M — Information Solutions Engineer</div>
+  <div class="f-socials">
+    <a href="https://github.com/premkumar6767" target="_blank" class="soc">GH</a>
+    <a href="https://www.linkedin.com/in/prem-kumar-m-167b722a1" target="_blank" class="soc">in</a>
+    <a href="https://wa.me/+917448631031" target="_blank" class="soc">W</a>
+  </div>
+</footer>
+
+<script>
+/* NAV */
+const ham = document.getElementById('ham');
+const navlinks = document.getElementById('navlinks');
+ham.addEventListener('click', () => navlinks.classList.toggle('open'));
+navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.background =
+    window.scrollY > 50 ? 'rgba(8,12,18,0.98)' : 'rgba(8,12,18,0.92)';
+});
+
+/* LIVE CLOCK */
+function updateClock() {
+  const now = new Date();
+  document.getElementById('live-clock').textContent =
+    now.toLocaleTimeString('en-GB', { hour12: false });
+}
+setInterval(updateClock, 1000); updateClock();
+
+/* LIVE SCADA METRICS */
+function randVariant(base, pct) {
+  return base + (Math.random() - .5) * 2 * base * pct;
+}
+const metrics = [
+  { id: 'm1', bid: 'b1', base: 94.7, fmt: v => v.toFixed(1), color: 'var(--amber)' },
+  { id: 'm2', bid: 'b2', base: 1248, fmt: v => Math.round(v).toLocaleString(), color: 'var(--teal)' },
+  { id: 'm3', bid: 'b3', base: 3841, fmt: v => Math.round(v).toLocaleString(), color: 'var(--green)' },
+  { id: 'm4', bid: 'b4', base: 12,   fmt: v => Math.round(v), color: 'var(--blue)' },
+];
+const units = ['%', 'u/hr', '', 'ms'];
+function updateMetrics() {
+  metrics.forEach((m, i) => {
+    const val = randVariant(m.base, .03);
+    const el = document.getElementById(m.id);
+    const rawSpan = el.querySelector('.sm-unit');
+    const unit = rawSpan ? rawSpan.outerHTML : '';
+    el.innerHTML = m.fmt(val) + '<span class="sm-unit">' + units[i] + '</span>';
+    const pct = Math.min(100, Math.max(10, (val / (m.base * 1.3)) * 100));
+    document.getElementById(m.bid).style.width = pct + '%';
+  });
+}
+setInterval(updateMetrics, 2200);
+
+/* SPARKLINE */
+const svg = document.getElementById('sparkline');
+let sparkData = Array.from({length:32}, () => 20 + Math.random() * 34);
+function drawSparkline() {
+  sparkData.push(20 + Math.random() * 34);
+  sparkData.shift();
+  const W = 320, H = 54;
+  const min = Math.min(...sparkData), max = Math.max(...sparkData);
+  const pts = sparkData.map((v, i) => {
+    const x = (i / (sparkData.length - 1)) * W;
+    const y = H - ((v - min) / (max - min + 1)) * (H - 6) - 3;
+    return `${x},${y}`;
+  }).join(' ');
+  svg.innerHTML = `
+    <defs>
+      <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#FF9F1C" stop-opacity=".25"/>
+        <stop offset="100%" stop-color="#FF9F1C" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <polygon points="${pts} ${W},${H} 0,${H}" fill="url(#sg)"/>
+    <polyline points="${pts}" fill="none" stroke="#FF9F1C" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+  `;
+}
+setInterval(drawSparkline, 600); drawSparkline();
+
+/* SCADA STATUS CYCLE */
+const pills = document.querySelectorAll('.status-pill');
+const states = [
+  [['sp-online','Online'],['sp-active','4 / 4 Running'],['sp-syncing','Pushing...']],
+  [['sp-online','Online'],['sp-active','4 / 4 Running'],['sp-active','Up to date']],
+  [['sp-online','Online'],['sp-active','4 / 4 Running'],['sp-syncing','Fetching...']],
+];
+let si = 0;
+setInterval(() => {
+  si = (si + 1) % states.length;
+  pills.forEach((p, i) => {
+    p.className = 'status-pill ' + states[si][i][0];
+    p.textContent = states[si][i][1];
+  });
+}, 3500);
+
+/* SCROLL REVEAL */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: .1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* FORM */
+function handleSend(btn) {
+  const inputs = btn.closest('.contact-form').querySelectorAll('input,textarea');
+  let ok = true;
+  inputs.forEach(i => {
+    if (!i.value.trim()) { i.style.borderColor = '#FF4444'; ok = false; }
+    else i.style.borderColor = '';
+  });
+  if (!ok) return;
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = '✓ Sent!';
+    btn.style.background = 'var(--green)';
+    inputs.forEach(i => i.value = '');
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = ''; btn.disabled = false;
+    }, 3000);
+  }, 1200);
+}
+</script>
+</body>
+</html>
